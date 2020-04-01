@@ -1,7 +1,19 @@
 <template>
-   <div>
-      <apexchart width="500" type="bar" :options="chartOptions" :series="series"></apexchart>
-   </div>
+   <v-card
+      class="mx-auto my-12"
+   >
+      <v-card-title>
+         Deaths by state in Brazil
+      </v-card-title>
+         <apexchart 
+            type="bar" 
+            :options="chartOptions" 
+            :series="series" 
+            v-if="chartOptions.xaxis.categories.length !== 0"
+            title="Deaths by state"
+         >
+         </apexchart>
+   </v-card>
 </template>
 
 <script lang="ts">
@@ -12,17 +24,40 @@ export default class Dashboard extends Vue {
    @Prop() private msg!: string;
    private chartOptions: any = {
       chart: {
-         id: 'vuechart-example'
+         id: 'deaths-by-state'
       },
       xaxis: {
-         categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+         categories: []
       }
    }
 
    private series: Array<any> = [{
-      name: 'series-1',
-      data: [30, 40, 35, 50, 49, 60, 70, 91]
+      name: 'Deaths',
+      data: []
    }]
+
+   async mounted() {
+      const datas = 
+         await fetch('https://covid19-brazil-api.now.sh/api/report/v1')
+            .then(res => {
+               if(res.ok)
+                  return res.json()
+               throw new Error('Ocorreu um erro ao consultar dados')
+            })
+            .catch(err => {
+               console.log('err', err)
+               return undefined
+            })
+      if(datas) {
+         await Promise.all(datas.data.map((data: any) => {
+            this.chartOptions.xaxis.categories.push(data.uf)
+            this.series[0].data.push(data.cases)
+         }))
+         console.log('CHART OPTIONS', this.chartOptions)
+         console.log('SERIES', this.series)
+      }
+   }
+
 }
 </script>
 
