@@ -1,5 +1,10 @@
 # covid-19-graphs
 
+## Project access link
+```
+bit.ly/34eLI5e
+```
+
 ## Project setup
 ```
 npm install
