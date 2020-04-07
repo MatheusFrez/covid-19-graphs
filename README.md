@@ -1,9 +1,6 @@
 # covid-19-graphs
 
-## Project access link
-```
-(bit.ly/34eLI5e)
-```
+## Project access link - [access](https://bit.ly/34eLI5e)
 
 ## Project setup
 ```
