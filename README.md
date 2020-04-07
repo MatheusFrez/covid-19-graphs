@@ -1,9 +1,7 @@
 # covid-19-graphs
 
 ## Project access link - [access](https://bit.ly/34eLI5e) 😋
-``
 
-``
 ### Project data search - [access](bit.ly/2Rlx9rw)
 
 ## Project setup
