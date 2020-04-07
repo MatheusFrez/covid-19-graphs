@@ -2,7 +2,7 @@
 
 ## Project access link
 ```
-bit.ly/34eLI5e
+(bit.ly/34eLI5e)
 ```
 
 ## Project setup
