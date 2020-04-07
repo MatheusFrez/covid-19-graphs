@@ -3,14 +3,14 @@
       class="mx-auto my-12"
    >
       <v-card-title>
-         Cases by state in Brazil - <strong><u>Total Cases: {{totalCases}}</u></strong>
+         Refused cases by state in Brazil - <strong><u>Total refuseds: {{totalRefuseds}}</u></strong>
       </v-card-title>
          <apexchart 
             type="bar" 
             :options="chartOptions" 
             :series="series" 
             v-if="chartOptions.xaxis.categories.length !== 0"
-            title="Cases by state"
+            title="Cases cured by state"
          >
          </apexchart>
    </v-card>
@@ -20,11 +20,11 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class CasesByState extends Vue {
-   private totalCases: number = 0
+export default class RefusedCasesByState extends Vue {
+   private totalRefuseds: number = 0
    private chartOptions: any = {
       chart: {
-         id: 'cases-by-state'
+         id: 'suspect-cases-by-state'
       },
       xaxis: {
          categories: []
@@ -32,7 +32,7 @@ export default class CasesByState extends Vue {
    }
 
    private series: Array<any> = [{
-      name: 'Cases',
+      name: 'Refuseds cases',
       data: []
    }]
 
@@ -50,8 +50,8 @@ export default class CasesByState extends Vue {
       if(datas) {
          await Promise.all(datas.data.map((data: any) => {
             this.chartOptions.xaxis.categories.push(data.uf)
-            this.series[0].data.push(data.cases)
-            this.totalCases += data.cases
+            this.series[0].data.push(data.refuses)
+            this.totalRefuseds += data.refuses
          }))
       }
    }

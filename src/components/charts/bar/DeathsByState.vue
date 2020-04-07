@@ -3,7 +3,7 @@
       class="mx-auto my-12"
    >
       <v-card-title>
-         Deaths by state in Brazil
+         Deaths by state in Brazil - <strong><u>Total Deaths: {{totalDeaths}}</u></strong>
       </v-card-title>
          <apexchart 
             type="bar" 
@@ -21,6 +21,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class CasesByState extends Vue {
+   private totalDeaths: number = 0
    private chartOptions: any = {
       chart: {
          id: 'deaths-by-state'
@@ -50,6 +51,7 @@ export default class CasesByState extends Vue {
          await Promise.all(datas.data.map((data: any) => {
             this.chartOptions.xaxis.categories.push(data.uf)
             this.series[0].data.push(data.deaths)
+            this.totalDeaths += data.deaths
          }))
       }
    }

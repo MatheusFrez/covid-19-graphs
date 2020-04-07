@@ -2,12 +2,20 @@
   <div class="home">
     <v-flex xs12 md12>
       <v-container grid-list-xl>
-        <v-layout row wrap align-center>
+        <v-layout row wrap>
           <v-flex xs12 md5 style="margin-top: 15px;">
             <CasesByState />
           </v-flex>
           <v-flex xs12 md5 style="margin-top: 15px;">
             <DeathsByState />
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap>
+          <v-flex xs12 md5 style="margin-top: 15px;">
+            <CasesCuredByState  style="margin-top: 5px;"/>
+          </v-flex>
+          <v-flex xs12 md5 style="margin-top: 15px;">
+            <RefusedCasesByState  style="margin-top: 5px;"/>
           </v-flex>
         </v-layout>
       </v-container>
@@ -34,13 +42,17 @@
 import Dashboard from '@/components/Dashboard.vue'
 import CasesByState from '../components/charts/bar/CasesByState.vue'
 import DeathsByState from '../components/charts/bar/DeathsByState.vue'
+import CasesCuredByState from '../components/charts/bar/CuredCasesByState.vue'
+import RefusedCasesByState from '../components/charts/bar/RefusedCasesByState.vue'
 
 export default {
   name: 'Home',
   components: {
     Dashboard,
     CasesByState,
-    DeathsByState
+    DeathsByState,
+    CasesCuredByState,
+    RefusedCasesByState
   }
 }
 </script>
