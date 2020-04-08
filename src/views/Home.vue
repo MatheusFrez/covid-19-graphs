@@ -12,10 +12,15 @@
         </v-layout>
         <v-layout row wrap>
           <v-flex xs12 md5 style="margin-top: 15px;">
-            <CasesCuredByState  style="margin-top: 5px;"/>
+            <CasesCuredByState style="margin-top: 5px;"/>
           </v-flex>
           <v-flex xs12 md5 style="margin-top: 15px;">
-            <RefusedCasesByState  style="margin-top: 5px;"/>
+            <RefusedCasesByState style="margin-top: 5px;"/>
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap>
+          <v-flex xs12 md10 style="margin-top: 15px;">
+            <WorldChart style="margin-top: 5px;"/>
           </v-flex>
         </v-layout>
       </v-container>
@@ -44,6 +49,7 @@ import CasesByState from '../components/charts/bar/CasesByState.vue'
 import DeathsByState from '../components/charts/bar/DeathsByState.vue'
 import CasesCuredByState from '../components/charts/bar/CuredCasesByState.vue'
 import RefusedCasesByState from '../components/charts/bar/RefusedCasesByState.vue'
+import WorldChart from '../components/charts/WorldChart.vue'
 
 export default {
   name: 'Home',
@@ -52,7 +58,8 @@ export default {
     CasesByState,
     DeathsByState,
     CasesCuredByState,
-    RefusedCasesByState
+    RefusedCasesByState,
+    WorldChart
   }
 }
 </script>
