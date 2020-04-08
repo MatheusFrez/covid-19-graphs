@@ -4,6 +4,8 @@
 
 ### Project data search - [access](bit.ly/2Rlx9rw)
 
+### Covid-19 global chart - [access](bit.ly/2Rka4p4)
+
 ## Project setup
 ```
 npm install
