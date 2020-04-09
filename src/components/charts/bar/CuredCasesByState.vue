@@ -1,19 +1,28 @@
 <template>
-   <v-card
-      class="mx-auto my-12"
-   >
-      <v-card-title>
-         Suspects cases by state in Brazil - <strong><u>Total suspects: {{totalSuspects}}</u></strong>
-      </v-card-title>
-         <apexchart 
-            type="bar" 
-            :options="chartOptions" 
-            :series="series" 
-            v-if="chartOptions.xaxis.categories.length !== 0"
-            title="Cases cured by state"
-         >
-         </apexchart>
-   </v-card>
+   <div>
+      <v-overlay v-if="isLoadingData">
+         <v-progress-circular
+            :size="50"
+            color="primary"
+            indeterminate
+         ></v-progress-circular>
+      </v-overlay>
+      <v-card
+         class="mx-auto my-12"
+      >
+         <v-card-title>
+            Suspects cases by state in Brazil - <strong><u>Total suspects: {{totalSuspects}}</u></strong>
+         </v-card-title>
+            <apexchart 
+               type="bar" 
+               :options="chartOptions" 
+               :series="series" 
+               v-if="chartOptions.xaxis.categories.length !== 0"
+               title="Cases cured by state"
+            >
+            </apexchart>
+      </v-card>
+   </div>
 </template>
 
 <script lang="ts">
@@ -22,6 +31,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class CasesCuredByState extends Vue {
    private totalSuspects: number = 0
+   private isLoadingData: boolean = true
    private chartOptions: any = {
       chart: {
          id: 'suspect-cases-by-state'
@@ -52,7 +62,7 @@ export default class CasesCuredByState extends Vue {
             this.chartOptions.xaxis.categories.push(data.uf)
             this.series[0].data.push(data.suspects)
             this.totalSuspects += data.suspects
-         }))
+         })).then(() => this.isLoadingData = false)
       }
    }
 

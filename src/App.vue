@@ -5,7 +5,7 @@
       <v-overlay v-if="showCoffeHelp">
         <v-dialog
           v-model="showCoffeHelp"
-          width="500"
+          width="auto"
         >
           <template v-slot:activator="{ on }">
             <v-card>
